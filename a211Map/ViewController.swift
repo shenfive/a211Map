@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var myMap: MKMapView!
     override func viewDidLoad() {
+        
+        myMap.isScrollEnabled = false
         super.viewDidLoad()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             let latitude:CLLocationDegrees = 25.0444032
@@ -25,6 +27,16 @@ MKCoordinateSpan(latitudeDelta: yScale, longitudeDelta: xScale)
             let region:MKCoordinateRegion =
 MKCoordinateRegion.init(center: location, span: span)
             self.myMap.setRegion(region, animated: true)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location
+            annotation.title = "譯智"
+            annotation.subtitle = "教育訓練中心"
+            self.myMap.addAnnotation(annotation)
+
+            
+            
+            
         }
 
     }
