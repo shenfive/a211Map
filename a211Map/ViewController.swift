@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,CLLocationManagerDelegate {
 
     var locationManager:CLLocationManager? = nil
     
@@ -19,20 +19,28 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.activityType = .automotiveNavigation
+        locationManager?.startUpdatingLocation()
         
+        myMap.userTrackingMode = .followWithHeading
+        
+        
+    }
+
+    //MARK:Location Delegate
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coordinate = locationManager?.location?.coordinate{
-            let xScale:CLLocationDegrees = 0.01
-            let yScale:CLLocationDegrees = 0.01
+            let xScale:CLLocationDegrees = 0.005
+            let yScale:CLLocationDegrees = 0.005
             let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: xScale, longitudeDelta: yScale)
             let region = MKCoordinateRegion(center: coordinate, span: span)
             self.myMap.setRegion(region, animated: true)
         }
-
-        
-        
-
     }
-
+    
+    
 
     @IBAction func mapTypeSelect(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex{
