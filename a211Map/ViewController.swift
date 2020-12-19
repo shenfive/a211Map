@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var myMap: MKMapView!
     override func viewDidLoad() {
         
-        myMap.isScrollEnabled = false
+      
         super.viewDidLoad()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             let latitude:CLLocationDegrees = 25.0446727
@@ -59,6 +59,16 @@ MKCoordinateRegion.init(center: location, span: span)
     
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         print("longPress")
+        let touchPoint = sender.location(in: myMap)
+        print(touchPoint)
+        let location = myMap.convert(touchPoint, toCoordinateFrom: myMap)
+        print(location)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        annotation.title = "自選點"
+        self.myMap.addAnnotation(annotation)
+
+
     }
     
     
