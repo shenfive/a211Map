@@ -19,6 +19,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()
+        
+        if let coordinate = locationManager?.location?.coordinate{
+            let xScale:CLLocationDegrees = 0.01
+            let yScale:CLLocationDegrees = 0.01
+            let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: xScale, longitudeDelta: yScale)
+            let region = MKCoordinateRegion(center: coordinate, span: span)
+            self.myMap.setRegion(region, animated: true)
+        }
+
+        
+        
 
     }
 
