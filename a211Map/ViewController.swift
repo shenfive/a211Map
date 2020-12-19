@@ -16,8 +16,8 @@ class ViewController: UIViewController {
         myMap.isScrollEnabled = false
         super.viewDidLoad()
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            let latitude:CLLocationDegrees = 25.0444032
-            let longitude:CLLocationDegrees = 121.5141468
+            let latitude:CLLocationDegrees = 25.0446727
+            let longitude:CLLocationDegrees = 121.5127383
             let location:CLLocationCoordinate2D =
 CLLocationCoordinate2DMake(latitude, longitude)
             let xScale:CLLocationDegrees = 0.01
@@ -55,5 +55,12 @@ MKCoordinateRegion.init(center: location, span: span)
         }
         
     }
+    
+    
+    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
+        print("longPress")
+    }
+    
+    
 }
 
