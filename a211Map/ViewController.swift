@@ -30,5 +30,18 @@ MKCoordinateRegion.init(center: location, span: span)
     }
 
 
+    @IBAction func mapTypeSelect(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex{
+        case 0:
+            myMap.mapType = .standard
+        case 1:
+            myMap.mapType = .satellite
+        case 2:
+            myMap.mapType = .hybrid
+        default:
+            break
+        }
+        
+    }
 }
 
